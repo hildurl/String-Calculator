@@ -7,6 +7,8 @@ public class StringCalculator{
 		System.out.println(add("//#\n1,2,3#4"));
 		System.out.println(add("//#\n1,15,3#-4"));
 		System.out.println(add("15,4,10"));
+		System.out.println(add("1100,3"));
+		System.out.println(add("10000"));
 	}
 		private static int  add(String numbers){
 		try{
@@ -35,6 +37,10 @@ public class StringCalculator{
 			}
 			else if (!numbers.contains(",") &&  !numbers.contains("\n") && !numbers.contains(delimiter))
 			{
+				if (Integer.parseInt(numbers) > 1000)
+				{
+					return 0;
+				}
 				return Integer.parseInt(numbers);
 			}
 			else
@@ -67,23 +73,41 @@ public class StringCalculator{
 					if (commaIndex < newLineIndex && commaIndex < delimiterIndex)
                                         {
                                                 int x = Integer.parseInt(numbers.substring(0,commaIndex));
-                                                sum = sum + x;
+                                                if (x > 1000)
+						{
+							x = 0;
+						}
+						sum = sum + x;
                                                 numbers = numbers.substring(commaIndex+1, numbers.length());
                                         }
                                         else if (newLineIndex < commaIndex && newLineIndex < delimiterIndex)
                                         {
                                                 int x = Integer.parseInt(numbers.substring(0,newLineIndex));
-                                                sum = sum + x;
+                                                if (x > 1000)
+                                                {
+                                                	x = 0;
+                                                }
+						sum = sum + x;
                                                 numbers = numbers.substring(newLineIndex+1, numbers.length());
                                         }
 					 else if (delimiterIndex < commaIndex && delimiterIndex < newLineIndex)
                                         {
                                                 int x = Integer.parseInt(numbers.substring(0,delimiterIndex));
-                                                sum = sum + x;
+                                                if (x > 1000)
+                                                {
+                                                        x = 0;
+                                                }
+						sum = sum + x;
                                                 numbers = numbers.substring(delimiterIndex+1, numbers.length());
                                         }
 				}
-				sum = sum + Integer.parseInt(numbers);
+				int x = Integer.parseInt(numbers);
+				if (x > 1000)
+                                {
+	                                x = 0;
+                                }
+
+				sum = sum + x;
 				
 				return sum;
 			}
