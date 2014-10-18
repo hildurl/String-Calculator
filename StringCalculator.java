@@ -1,11 +1,6 @@
 public class StringCalculator{
 	public static void main(String []args) {
-		System.out.println(Integer.toString(add("1,2")));
-		System.out.println(Integer.toString(add("")));
-		System.out.println(Integer.toString(add("1")));
-		System.out.println(Integer.toString(add("-1")));
-		System.out.println(Integer.toString(add("-2,-5")));
-		System.out.println(Integer.toString(add("aron,1")));	
+			
 	}
 	private static int  add(String numbers){
 		try{		
