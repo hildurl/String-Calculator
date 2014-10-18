@@ -5,6 +5,8 @@ public class StringCalculator{
 		System.out.println(add("1\n2,3"));
 		System.out.println(add("3"));
 		System.out.println(add("//#\n1,2,3#4"));
+		System.out.println(add("//#\n1,15,3#-4"));
+		System.out.println(add("15,4,10"));
 	}
 		private static int  add(String numbers){
 		try{
@@ -13,7 +15,20 @@ public class StringCalculator{
 			{
 				delimiter = numbers.substring(2,3);
 				numbers = numbers.substring(4,numbers.length());
-			}	
+			}
+			if (numbers.contains("-") && !delimiter.equals("-"))
+			{
+				String output = "Negative numbers not allowed: ";
+				int countNegative = numbers.length() - numbers.replace("-","").length();
+				for (int i = 0; i < countNegative; i++) 
+				{
+					int negativeIndex = numbers.indexOf("-");
+					output += numbers.substring(negativeIndex, negativeIndex + 2);
+					numbers = numbers.substring(negativeIndex+2, numbers.length());
+				}
+				System.out.println(output);
+				return 0;
+			}		
 			if (numbers.length() == 0)
 			{
 				return 0;
